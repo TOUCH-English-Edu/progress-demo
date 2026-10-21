@@ -1,0 +1,704 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Alex 的 16 个星期</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* Layout: a presenter's page, one scene per screen on a projector — the opening, one week told with the real
+   screens (App explainer card, App practice, the class with the student's phone beside it, before/after, the
+   teacher's tap), then the sixteen weeks of the skill map growing, then the close. Colours: TOUCH navy, Level 2
+   blue, and the e-learning home's skill purple, which deepens as a skill grows. */
+:root {
+  --bg: #F3F5FA;
+  --surface: #FFFFFF;
+  --surface-2: #EBEFF7;
+  --ink: #141C2E;
+  --muted: #5A6478;
+  --line: #DCE2EE;
+  --navy: #15357B;
+  --navy-ink: #FFFFFF;
+  --blue: #1F9FE6;
+  --blue-text: #0B6AA6;
+  --blue-soft: #E2F2FC;
+  --app: #6A4BC4;  --app-bg: #EEE9FB;
+  --cls: #15357B;  --cls-bg: #E6ECF9;
+  --tch: #B4570B;  --tch-bg: #FCEFE2;
+  --ok: #1F7A40;   --ok-bg: #E2F3E8;
+  /* the skill shades: nothing → seen → said once → learned → practised */
+  --k0: #ECEEF4; --k1: #E3DCF8; --k2: #B9A6EE; --k3: #7B5CD6; --k4: #4A2FA8;
+  --flag: #E07A2E;
+  --shadow: 0 1px 2px rgba(18, 26, 46, .06), 0 8px 24px rgba(18, 26, 46, .07);
+  --font: "Plus Jakarta Sans", "Noto Sans SC", -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0D1220; --surface: #161D2F; --surface-2: #1C2540; --ink: #E9EDF7; --muted: #A0ABC4; --line: #2A3553;
+    --navy: #3D62C4; --navy-ink: #FFFFFF; --blue: #3DAEEE; --blue-text: #8FD0F7; --blue-soft: #14324A;
+    --app: #C5B5F5; --app-bg: #2A2150; --cls: #A9BEF5; --cls-bg: #1E2B52; --tch: #F1B27A; --tch-bg: #3A2614;
+    --ok: #8FD9A8; --ok-bg: #173524;
+    --k0: #222B44; --k1: #34305E; --k2: #5B4BA6; --k3: #8C70E6; --k4: #B9A4FF;
+    --flag: #F29A55; --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0D1220; --surface: #161D2F; --surface-2: #1C2540; --ink: #E9EDF7; --muted: #A0ABC4; --line: #2A3553;
+  --navy: #3D62C4; --navy-ink: #FFFFFF; --blue: #3DAEEE; --blue-text: #8FD0F7; --blue-soft: #14324A;
+  --app: #C5B5F5; --app-bg: #2A2150; --cls: #A9BEF5; --cls-bg: #1E2B52; --tch: #F1B27A; --tch-bg: #3A2614;
+  --ok: #8FD9A8; --ok-bg: #173524;
+  --k0: #222B44; --k1: #34305E; --k2: #5B4BA6; --k3: #8C70E6; --k4: #B9A4FF;
+  --flag: #F29A55; --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--font); font-size: 16px; line-height: 1.6; }
+h1, h2, h3, p, ul, ol, figure { margin: 0; }
+ul, ol { padding: 0; list-style: none; }
+h1, h2, h3 { text-wrap: balance; line-height: 1.22; }
+button { font: inherit; color: inherit; }
+button:focus-visible, input:focus-visible, a:focus-visible { outline: 2.5px solid var(--blue); outline-offset: 2px; }
+
+.bar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; display: flex; align-items: center; gap: 12px; padding: 10px 16px; background: color-mix(in srgb, var(--bg) 88%, transparent); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
+.bar b { font-weight: 800; font-size: 15px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.bar nav { margin-left: auto; display: flex; gap: 6px; flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; }
+.bar nav::-webkit-scrollbar { display: none; }
+.bar nav a { flex: 0 0 auto; font-size: 13px; font-weight: 700; color: var(--muted); text-decoration: none; padding: 5px 10px; border-radius: 10px; white-space: nowrap; }
+.bar nav a.on { background: var(--navy); color: var(--navy-ink); }
+
+.scene { min-height: calc(100vh - 54px); padding-inline: 16px; padding-block: 40px 56px; display: grid; align-content: center; }
+.wrap { width: 100%; max-width: 1180px; margin: 0 auto; display: grid; gap: 22px; min-width: 0; }
+.wrap > * { min-width: 0; }
+.kicker { font-size: 13px; font-weight: 800; letter-spacing: .08em; color: var(--blue-text); }
+h2 { font-size: clamp(26px, 4vw, 40px); font-weight: 800; }
+.lede { font-size: clamp(16px, 1.8vw, 19px); color: var(--muted); max-width: 46em; }
+.note { font-size: 13px; color: var(--muted); }
+
+/* opening */
+.open h1 { font-size: clamp(30px, 6.4vw, 66px); font-weight: 900; color: var(--blue-text); line-height: 1.25; }
+.open .then { font-size: clamp(18px, 2.4vw, 26px); font-weight: 700; max-width: 30em; }
+.open .then b { font-weight: 900; }
+.facts { display: grid; gap: 10px; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); margin-top: 8px; }
+.facts li { padding: 14px 16px; border-radius: 16px; background: var(--surface); border: 1px solid var(--line); font-size: 15px; }
+.facts li b { display: block; font-size: 13px; color: var(--muted); font-weight: 700; margin-bottom: 2px; }
+
+/* the week strip */
+.days { display: grid; gap: 8px; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
+.day { padding: 12px 14px; border-radius: 16px; background: var(--surface); border: 1px solid var(--line); display: grid; gap: 4px; align-content: start; text-decoration: none; color: inherit; }
+.day .d { font-size: 12.5px; font-weight: 800; color: var(--muted); }
+.day .w { font-size: 15px; font-weight: 800; line-height: 1.35; }
+.who { justify-self: start; display: inline-block; padding: 1px 9px; border-radius: 7px; font-size: 12px; font-weight: 800; }
+.who.app { background: var(--app-bg); color: var(--app); }
+.who.cls { background: var(--cls-bg); color: var(--cls); }
+.who.tch { background: var(--tch-bg); color: var(--tch); }
+.who.me { background: var(--ok-bg); color: var(--ok); }
+
+/* a two-column block: a device on one side, the words on the other */
+.pair { display: grid; gap: 24px; align-items: center; grid-template-columns: minmax(0, 1fr); }
+.side { display: grid; gap: 14px; align-content: start; }
+.side h3 { font-size: clamp(20px, 2.4vw, 28px); font-weight: 800; }
+.side p { font-size: 16px; }
+.points { display: grid; gap: 8px; }
+.points li { padding-left: 16px; position: relative; font-size: 15.5px; }
+.points li::before { content: ""; position: absolute; left: 0; top: .72em; width: 7px; height: 2px; background: var(--muted); }
+
+.phone { width: 100%; max-width: 300px; justify-self: center; border-radius: 38px; border: 9px solid #0F141E; background: #0F141E; overflow: hidden; box-shadow: var(--shadow); position: relative; aspect-ratio: 390 / 844; }
+.phone img, .phone video { display: block; width: 100%; height: 100%; object-fit: cover; }
+.phone.vid { aspect-ratio: 1080 / 1920; }
+.phone .fade { position: absolute; inset: 0; transition: opacity .45s ease; }
+.screen { width: 100%; border-radius: 14px; overflow: hidden; background: #0F141E; border: 8px solid #0F141E; box-shadow: var(--shadow); aspect-ratio: 16 / 9; position: relative; }
+.screen img { display: block; width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0; transition: opacity .45s ease; }
+@media (prefers-reduced-motion: reduce) { .phone .fade, .screen img { transition: none; } }
+
+.ctl { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.ctl button { min-width: 40px; height: 40px; padding: 0 12px; border-radius: 12px; border: 1px solid var(--line); background: var(--surface); font-weight: 800; font-size: 15px; cursor: pointer; }
+.ctl button.main { background: var(--navy); border-color: var(--navy); color: var(--navy-ink); min-width: 96px; }
+.ctl .count { font-size: 14px; font-weight: 700; color: var(--muted); font-variant-numeric: tabular-nums; }
+.cap { min-height: 3.2em; }
+.cap b { display: block; font-size: 13px; font-weight: 800; color: var(--muted); }
+.cap span { font-size: 17px; font-weight: 700; }
+.dots { display: flex; gap: 5px; flex-wrap: wrap; }
+.dots i { width: 9px; height: 9px; border-radius: 3px; background: var(--line); }
+.dots i.on { background: var(--navy); }
+.dots i.ph { background: var(--blue); }
+
+/* class: projector and phone side by side */
+.room { display: grid; gap: 18px; grid-template-columns: minmax(0, 1fr); align-items: center; }
+.room .phone { max-width: 210px; }
+.phase { display: flex; flex-wrap: wrap; gap: 6px; }
+.phase span { font-size: 12.5px; font-weight: 700; padding: 3px 10px; border-radius: 8px; background: var(--surface-2); color: var(--muted); }
+.phase span.on { background: var(--blue); color: #fff; }
+
+/* before / after */
+.ba { display: grid; gap: 14px; grid-template-columns: minmax(0, 1fr); }
+.ba article { border-radius: 18px; padding: 18px 20px; display: grid; gap: 8px; align-content: start; }
+.ba .b4 { background: var(--surface); border: 1px dashed var(--muted); }
+.ba .af { background: var(--blue-soft); border: 1.5px solid var(--blue); }
+.ba h3 { font-size: 14px; font-weight: 800; color: var(--muted); }
+.ba .af h3 { color: var(--blue-text); }
+.ba q { font-size: clamp(17px, 2vw, 21px); font-weight: 700; quotes: "“" "”"; }
+.ba .reply { font-size: 14.5px; color: var(--muted); }
+.ba .reply b { color: var(--ink); }
+
+/* teacher tap */
+.tap { display: grid; gap: 14px; grid-template-columns: minmax(0, 1fr); align-items: stretch; }
+.tap > div { border-radius: 18px; padding: 16px 18px; background: var(--surface); border: 1px solid var(--line); display: grid; gap: 8px; align-content: start; }
+.mini-flag { border-radius: 16px; padding: 14px 16px; background: #FDF0E4; color: #16202E; display: grid; gap: 6px; }
+.mini-flag .t1 { font-size: 12px; font-weight: 800; color: #C2611A; }
+.mini-flag .t2 { font-size: 17px; font-weight: 800; line-height: 1.3; }
+.mini-flag .t2 small { display: block; font-size: 13px; font-weight: 500; color: #5C6779; }
+.mini-flag .go { justify-self: start; padding: 6px 16px; border-radius: 12px; background: #15357B; color: #fff; font-size: 13px; font-weight: 800; }
+.roster { display: grid; gap: 6px; }
+.roster li { display: flex; justify-content: space-between; gap: 10px; padding: 8px 12px; border-radius: 12px; background: var(--surface-2); font-size: 14.5px; }
+.roster li.hit { background: var(--tch-bg); color: var(--tch); font-weight: 800; }
+
+/* sixteen weeks: the earlier design — the student's phone, a skill map that lights cell by cell */
+.stage2 { display: grid; gap: 22px; grid-template-columns: minmax(0, 1fr); justify-items: center; align-items: start; }
+.side2 { width: 100%; max-width: 520px; display: grid; gap: 14px; align-content: start; }
+.side2 .lede { font-size: 16px; }
+.gctl { display: grid; gap: 10px; padding: 14px 16px; border-radius: 18px; background: var(--surface); border: 1px solid var(--line); box-shadow: var(--shadow); }
+.gctl-top { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.gctl-top output { font-size: 22px; font-weight: 900; font-variant-numeric: tabular-nums; }
+.gctl button { min-width: 40px; height: 40px; padding: 0 12px; border-radius: 12px; border: 1px solid var(--line); background: var(--surface-2); font-weight: 800; font-size: 17px; cursor: pointer; }
+.gctl button.main { background: var(--navy); border-color: var(--navy); color: var(--navy-ink); font-size: 15px; min-width: 92px; }
+.gctl button:disabled { opacity: .35; cursor: default; }
+.gctl input { width: 100%; accent-color: #7B5CD6; }
+.gwhat { display: grid; gap: 6px; font-size: 14px; }
+.gwhat li { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 8px; align-items: baseline; line-height: 1.45; }
+.gnew { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; min-height: 28px; font-size: 13px; color: var(--muted); }
+.gnew span { padding: 3px 10px; border-radius: 9px; background: #7B5CD6; color: #fff; font-size: 13px; font-weight: 700; }
+.gteacher { padding: 12px 16px; border-radius: 18px; background: var(--cls-bg); display: grid; gap: 4px; font-size: 14px; }
+.gteacher .who { background: var(--surface); }
+.gshot { width: 100%; max-width: 320px; display: grid; gap: 10px; justify-items: center; }
+.gphone { width: 100%; border-radius: 36px; border: 9px solid #10151F; background: #EEF1F8; overflow: hidden; box-shadow: var(--shadow); }
+.ph { padding: 16px 12px 18px; display: grid; gap: 10px; color: #16202E; font-size: 13px; line-height: 1.4; }
+.ph-hello { font-size: 19px; font-weight: 800; padding: 2px 4px 0; }
+.ph-card { background: #FFFFFF; border-radius: 20px; padding: 13px 14px; box-shadow: 0 1px 2px rgba(18, 26, 46, .06), 0 4px 12px rgba(18, 26, 46, .05); min-width: 0; }
+.ph-card h4 { margin: 0; font-size: 13.5px; font-weight: 800; display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+.ph-card h4 span { font-weight: 700; color: #5C6779; font-size: 12px; font-variant-numeric: tabular-nums; }
+.ph-flag { background: #FDF0E4; display: grid; gap: 8px; }
+.ph-flag .t1 { font-size: 11.5px; font-weight: 800; color: #C2611A; }
+.ph-flag .t2 { font-size: 14px; font-weight: 800; line-height: 1.3; }
+.ph-flag .t2 small { display: block; font-size: 12px; font-weight: 500; color: #5C6779; }
+.ph-flag .go { justify-self: start; padding: 6px 16px; border-radius: 12px; background: #15357B; color: #fff; font-size: 12.5px; font-weight: 800; }
+.ph-quiet { font-size: 12px; color: #5C6779; text-align: center; padding: 2px 0; }
+.gmap { display: grid; gap: 9px; margin-top: 10px; }
+.grow-row { display: grid; grid-template-columns: 62px minmax(0, 1fr); gap: 8px; align-items: center; }
+.grow-row .dn { font-size: 12px; font-weight: 700; line-height: 1.2; }
+.grow-row .dn small { display: block; font-size: 9.5px; font-weight: 600; color: #5C6779; letter-spacing: .02em; }
+.gcells { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 5px; }
+.gcell { position: relative; aspect-ratio: 1; max-width: 100%; border-radius: 9px; border: 0; padding: 0; background: #ECEEF4; cursor: pointer; transition: background-color .8s ease, transform .35s ease; }
+.gcell[data-s="1"] { background: #E3DCF8; }
+.gcell[data-s="2"] { background: #B9A6EE; }
+.gcell[data-s="3"] { background: #7B5CD6; }
+.gcell[data-s="4"] { background: #4A2FA8; }
+.gcell.pop { animation: gpop .9s ease; }
+@keyframes gpop { 0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(123, 92, 214, .5); } 35% { transform: scale(1.16); box-shadow: 0 0 0 6px rgba(123, 92, 214, .22); } 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(123, 92, 214, 0); } }
+.gcell[data-f="1"] { box-shadow: inset 0 0 0 2.5px #E07A2E; }
+.gcell[data-f="1"]::after { content: ""; position: absolute; right: -3px; top: -3px; width: 9px; height: 9px; border-radius: 50%; background: #E07A2E; border: 2px solid #FFFFFF; }
+.gcell[aria-pressed="true"] { outline: 2.5px solid #15357B; outline-offset: 2px; }
+@media (prefers-reduced-motion: reduce) { .gcell { transition: none; } .gcell.pop { animation: none; } }
+.gpicked { margin-top: 10px; padding: 8px 10px; border-radius: 12px; background: #EEF1F8; font-size: 12px; line-height: 1.4; min-height: 50px; }
+.gpicked b { display: block; font-size: 12.5px; }
+.gpicked span { color: #5C6779; }
+.ph-two { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.ph-num { margin: 0; font-size: 26px; font-weight: 800; line-height: 1.1; font-variant-numeric: tabular-nums; }
+.ph-num.w { color: #7B5CD6; }
+.ph-num.s { color: #2A8BD7; }
+.spark { display: block; width: 100%; height: 34px; margin-top: 6px; }
+.glegend { display: flex; flex-wrap: wrap; gap: 6px 12px; justify-content: center; font-size: 12.5px; color: var(--muted); }
+.glegend i { display: inline-block; width: 12px; height: 12px; border-radius: 4px; vertical-align: -1px; margin-right: 5px; }
+.gshot figcaption { font-size: 13px; color: var(--muted); text-align: center; line-height: 1.5; }
+
+/* links out to the real screens */
+.real { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.real a { display: inline-flex; align-items: center; gap: 8px; padding: 10px 16px; border-radius: 12px; background: var(--navy); color: var(--navy-ink); font-weight: 800; font-size: 15px; text-decoration: none; }
+.real a.alt { background: var(--surface); color: var(--navy); border: 1.5px solid var(--navy); }
+.real a svg { flex: 0 0 auto; }
+.real small { flex-basis: 100%; font-size: 13px; color: var(--muted); }
+
+/* close */
+.close-grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+.close-grid article { padding-top: 12px; border-top: 3px solid var(--c); display: grid; gap: 6px; align-content: start; }
+.close-grid h3 { font-size: 18px; font-weight: 800; }
+.close-grid p { font-size: 15.5px; }
+.goal-line { padding: 18px 20px; border-radius: 18px; background: var(--navy); color: var(--navy-ink); font-size: clamp(17px, 2.2vw, 22px); font-weight: 800; }
+.goal-line a { color: inherit; }
+.foot { font-size: 12.5px; color: var(--muted); border-top: 1px solid var(--line); padding-top: 14px; }
+
+@media (min-width: 860px) {
+  .scene { padding-inline: 32px; }
+  .pair { grid-template-columns: 300px minmax(0, 1fr); gap: 44px; }
+  .pair.flip { grid-template-columns: minmax(0, 1fr) 300px; }
+  .pair.flip .phone { order: 2; }
+  .room { grid-template-columns: minmax(0, 1fr) 210px; }
+  .ba { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .tap { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .stage2 { grid-template-columns: minmax(0, 520px) minmax(0, 320px); justify-content: center; gap: 48px; }
+}
+</style>
+
+<header class="bar">
+  <b>Alex 的 16 个星期</b>
+  <nav id="nav" aria-label="分段">
+    <a href="#s-open">开场</a>
+    <a href="#s-week">一个星期</a>
+    <a href="#s-card">讲解卡</a>
+    <a href="#s-app">App 练习</a>
+    <a href="#s-class">课堂</a>
+    <a href="#s-ba">前后对比</a>
+    <a href="#s-tap">老师点名</a>
+    <a href="#s-grow">16 个星期</a>
+    <a href="#s-close">收尾</a>
+  </nav>
+</header>
+
+<section class="scene open" id="s-open">
+  <div class="wrap">
+    <p class="kicker">LEVEL 2 · CONVEY 表达 · 给同事看</p>
+    <h1>「我不知道我学了什么，<br>我好像不会。」</h1>
+    <p class="then">学生最常这样讲。今天给大家看：一个 Level 2 的学生，App 和课堂一起走，<b>16 个星期学会了什么，每个星期都看得到。</b></p>
+    <ul class="facts">
+      <li><b>画面</b>e-learning Level 2 和课堂 E10「Is This a Scam?」都是现在的成品，截自测试站。</li>
+      <li><b>学生 Alex</b>是虚构的。他每星期上 1 堂课、在 App 做 2 课，数据是照两边真的技能标签模拟出来的。</li>
+      <li><b>「学会了」</b>＝在两课不同的课、不同的日子，都能自己说出来。只选对答案不算。</li>
+    </ul>
+    <div class="real"><a class="alt" href="https://touch-english-edu.github.io/lesson-preview/teacher/ep-e10-is-this-a-scam/class.html" target="_blank" rel="noopener">课堂 E10：老师的画面 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></a><a class="alt" href="https://touch-english-edu.github.io/lesson-preview/student/ep-e10-is-this-a-scam/phone.html" target="_blank" rel="noopener">课堂 E10：学生的手机 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></a><small>这两个是真的课堂画面，可以直接打开。</small></div>
+  </div>
+</section>
+
+<section class="scene" id="s-week">
+  <div class="wrap">
+    <p class="kicker">第 7 个星期</p>
+    <h2>Alex 的一个星期</h2>
+    <p class="lede">这一周的主题是「出了状况，讲清楚」。App 和课堂练的是同一组技能：描述情况、讲原因、讲结果。</p>
+    <div class="days">
+      <a class="day" href="#s-card"><span class="d">星期一 · 课前</span><span class="who app">App</span><span class="w">看讲解卡：这个单元要学什么</span></a>
+      <a class="day" href="#s-app"><span class="d">星期二 · 家里 15 分钟</span><span class="who app">App</span><span class="w">练「三步说明」：重点 → 原因 → 下一步</span></a>
+      <a class="day" href="#s-class"><span class="d">星期三 · 课堂 90 分钟</span><span class="who cls">课堂</span><span class="w">E10「Is This a Scam?」，手机跟着上课</span></a>
+      <a class="day" href="#s-ba"><span class="d">星期三 · 下课前</span><span class="who me">学生</span><span class="w">同一个问题再答一次，看到自己进步</span></a>
+      <a class="day" href="#s-tap"><span class="d">星期三 · 下课后</span><span class="who tch">老师</span><span class="w">Alex「讲原因」还不顺，老师点他去练</span></a>
+      <a class="day" href="#s-grow"><span class="d">星期六 · 家里</span><span class="who app">App</span><span class="w">照老师指的练，技能地图又深一格</span></a>
+    </div>
+  </div>
+</section>
+
+<section class="scene" id="s-card">
+  <div class="wrap pair">
+    <div class="phone vid"><video id="card-video" src="m/card-l2u3.mp4" poster="m/card-poster.jpg" controls playsinline preload="metadata"></video></div>
+    <div class="side">
+      <p class="kicker">星期一 · 课前 · App</p>
+      <h3>讲解卡：上课前先知道要学什么</h3>
+      <p>学生以前最大的问题是：老师一问，没有想法。所以课前先看一张会说话的讲解卡，大约 2 分钟。</p>
+      <ul class="points">
+        <li>Amy 老师主持，中文讲解，学生选自己的语言。</li>
+        <li>一开始先猜：「冷气坏了，哪一句对？」中间会停下来，等学生点答案。</li>
+        <li>讲这个单元的故事、同事是谁、学完会做什么，最后用学生自己的声音念重点句。</li>
+      </ul>
+      <p class="note">这是 e-learning Level 2 第 3 单元「出了状况」的开场讲解卡。App 里是可以点的；这里是导出的同一张卡的影片，点一下播放（有声音）。</p>
+    </div>
+  </div>
+</section>
+
+<section class="scene" id="s-app">
+  <div class="wrap pair flip">
+    <div class="phone" id="app-phone"></div>
+    <div class="side">
+      <p class="kicker">星期二 · 家里 15 分钟 · App</p>
+      <h3>「三步说明」：一步一步，最后自己说</h3>
+      <div class="cap" id="app-cap" aria-live="polite"></div>
+      <div class="ctl">
+        <button type="button" id="app-prev" aria-label="上一个画面">‹</button>
+        <button type="button" class="main" id="app-play">暂停</button>
+        <button type="button" id="app-next" aria-label="下一个画面">›</button>
+        <span class="count" id="app-count"></span>
+      </div>
+      <div class="dots" id="app-dots" aria-hidden="true"></div>
+      <p class="note">App 负责课堂做不到的：一个人慢慢来、由浅入深、每一句都开口说、每一句都记下来。最后 4 步都是学生自己说，没有选项可以猜。</p>
+    </div>
+  </div>
+</section>
+
+<section class="scene" id="s-class">
+  <div class="wrap">
+    <p class="kicker">星期三 · 课堂 90 分钟</p>
+    <h2>E10「Is This a Scam?」：大屏幕和学生的手机一起走</h2>
+    <div class="phase" id="phase" aria-hidden="true"></div>
+    <div class="room">
+      <div class="screen" id="cls-screen"></div>
+      <div class="phone" id="cls-phone"></div>
+    </div>
+    <div class="cap" id="cls-cap" aria-live="polite"></div>
+    <div class="ctl">
+      <button type="button" id="cls-prev" aria-label="上一页">‹</button>
+      <button type="button" class="main" id="cls-play">暂停</button>
+      <button type="button" id="cls-next" aria-label="下一页">›</button>
+      <span class="count" id="cls-count"></span>
+    </div>
+    <p class="note">左边是老师投影的画面，右边是学生同一时间在手机上看到、作答的画面。17 页，照「连起来 → 学 → 结构 → 练 → 沟通 → 再试 → 用出去 → 回顾」走。</p>
+    <div class="real"><a href="https://touch-english-edu.github.io/lesson-preview/teacher/ep-e10-is-this-a-scam/class.html" target="_blank" rel="noopener">打开老师的上课画面 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></a><a class="alt" href="https://touch-english-edu.github.io/lesson-preview/student/ep-e10-is-this-a-scam/phone.html" target="_blank" rel="noopener">打开学生的手机画面 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></a><small>老师画面用键盘 → 翻页；不用登入。</small></div>
+  </div>
+</section>
+
+<section class="scene" id="s-ba">
+  <div class="wrap">
+    <p class="kicker">星期三 · 下课前</p>
+    <h2>同一个问题，答两次</h2>
+    <p class="lede">上课一开始，奶奶传来语音：一个男人说是银行的人，要她的验证码。学生先用自己的英文回她。下课前，同一个问题再答一次。</p>
+    <div class="ba">
+      <article class="b4">
+        <h3>上课前</h3>
+        <q>Be careful, Grandma. There are many scams.</q>
+        <p class="reply">奶奶：<b>“OK… but is this one a scam? What do I do now?”</b></p>
+      </article>
+      <article class="af">
+        <h3>下课前</h3>
+        <q>Grandma, don't give him the code. Last week my friend got the same call. The caller said he was from the bank. What they do is scare you, so you don't stop and think. A real bank never asks for your code. Hang up and call the number on the back of your card.</q>
+        <p class="reply">发生了什么 → 骗局怎么运作 → 现在该做什么</p>
+      </article>
+    </div>
+    <p class="lede">学生不用老师告诉他进步了，他自己看得到：一句「小心」，变成别人听了知道该怎么做的提醒。</p>
+    <div class="real"><a href="https://touch-english-edu.github.io/lesson-preview/teacher/ep-e10-is-this-a-scam/class.html#s=4&k=0" target="_blank" rel="noopener">上课前那一页 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></a><a class="alt" href="https://touch-english-edu.github.io/lesson-preview/teacher/ep-e10-is-this-a-scam/class.html#s=15&k=2" target="_blank" rel="noopener">前后对比那一页 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></a></div>
+  </div>
+</section>
+
+<section class="scene" id="s-tap">
+  <div class="wrap">
+    <p class="kicker">星期三 · 下课后 · 老师</p>
+    <h2>老师看出谁卡住，点他去练</h2>
+    <div class="tap">
+      <div>
+        <span class="who tch">老师在课堂</span>
+        <p>Kumar 不相信时，Alex 答不出 because 后面的话。「讲原因」还不顺。</p>
+        <ul class="roster" aria-label="示意：这一班">
+          <li><span>学生 甲</span><span>✓</span></li>
+          <li class="hit"><span>Alex · 讲原因</span><span>点一下</span></li>
+          <li><span>学生 乙</span><span>✓</span></li>
+        </ul>
+      </div>
+      <div>
+        <span class="who app">Alex 的手机</span>
+        <div class="mini-flag">
+          <span class="t1">老师要你练这个</span>
+          <p class="t2">Explain reasons or causes<small>说明 · 讲原因</small></p>
+          <span class="go">去练 →</span>
+        </div>
+        <p>App 把他带到练「讲原因」的那几课。</p>
+      </div>
+      <div>
+        <span class="who cls">下一堂课前</span>
+        <p>老师打开名单就看到：Alex 练了两课，「讲原因」第 9 个星期学会了。</p>
+        <p class="note">老师不用记在心里，也不用每个学生逐个确认：会不会，App 照「两课、两天自己说出来」来判断。</p>
+      </div>
+    </div>
+    <p class="note">这一段还没做出来，没有真的画面可以打开；是今年要接上的部分。</p>
+  </div>
+</section>
+
+<section class="scene" id="s-grow">
+  <div class="wrap">
+    <div class="stage2">
+      <div class="side2">
+        <p class="kicker">16 个星期</p>
+        <h2>每个星期学到什么，都看得到</h2>
+        <p class="lede">Alex 的手机首页。上一堂课、做一课 App，格子就深一点；在两课不同的课、不同的日子都自己说出来，那一格就亮成「学会了」。</p>
+        <div class="gctl">
+          <div class="gctl-top">
+            <button type="button" id="g-prev" aria-label="上一周">‹</button>
+            <output id="g-week" for="g-range">第 1 周</output>
+            <button type="button" id="g-next" aria-label="下一周">›</button>
+            <button type="button" class="main" id="g-play">▶ 播放</button>
+          </div>
+          <input type="range" id="g-range" min="1" max="16" step="1" value="1" aria-label="选择第几周">
+          <ul class="gwhat" id="g-acts"></ul>
+          <div class="gnew" id="g-newly"></div>
+        </div>
+        <div class="gteacher">
+          <span class="who cls">老师这边看到</span>
+          <p id="g-teacher"></p>
+        </div>
+      </div>
+      <figure class="gshot">
+        <div class="gphone">
+          <div class="ph">
+            <p class="ph-hello">你好，Alex</p>
+            <div class="ph-card ph-flag" id="g-flag" hidden>
+              <span class="t1">老师要你练这个</span>
+              <p class="t2" id="g-flag-name"></p>
+              <span class="go">去练 →</span>
+            </div>
+            <p class="ph-quiet" id="g-flag-none">这星期没有老师指定的练习</p>
+            <div class="ph-card">
+              <h4>学会的技能 <span id="g-count"></span></h4>
+              <div class="gmap" id="g-map"></div>
+              <p class="gpicked" id="g-picked" aria-live="polite"></p>
+            </div>
+            <div class="ph-two">
+              <div class="ph-card"><h4>记住的词</h4><p class="ph-num w" id="g-words">0</p><svg class="spark" id="g-sp-words" viewBox="0 0 120 34" preserveAspectRatio="none" aria-hidden="true"></svg></div>
+              <div class="ph-card"><h4>会说的句子</h4><p class="ph-num s" id="g-sents">0</p><svg class="spark" id="g-sp-sents" viewBox="0 0 120 34" preserveAspectRatio="none" aria-hidden="true"></svg></div>
+            </div>
+          </div>
+        </div>
+        <p class="glegend" aria-label="图例">
+          <span><i style="background:#ECEEF4;border:1px solid var(--line)"></i>还没碰</span>
+          <span><i style="background:#E3DCF8"></i>看过</span>
+          <span><i style="background:#B9A6EE"></i>说过一次</span>
+          <span><i style="background:#7B5CD6"></i>学会了</span>
+          <span><i style="background:#4A2FA8"></i>练熟了</span>
+          <span><i style="box-shadow:inset 0 0 0 2.5px #E07A2E"></i>老师指了要练</span>
+        </p>
+        <figcaption>这个画面还没做出来，是接上课堂之后的样子。点一格，看那是什么技能。</figcaption>
+      </figure>
+    </div>
+    <p class="note">技能、课和顺序是真的：App 用 e-learning Level 2 故事版 30 课的技能标签，课堂用 Level 2 课程表 48 个课题的技能标签。Alex 每星期 1 堂课、2 课 App，第 16 周只上课。记住的词和会说的句子是示意。</p>
+  </div>
+</section>
+
+<section class="scene" id="s-close">
+  <div class="wrap">
+    <p class="kicker">收尾</p>
+    <h2>人教，工具记，学生看得到</h2>
+    <div class="close-grid">
+      <article style="--c: var(--app)"><h3>App</h3><p>每天陪学生练，一步一步；每一句都记下来，判断哪一项学会了。</p></article>
+      <article style="--c: var(--cls)"><h3>老师</h3><p>在课堂上教，看出谁卡在哪里，点他去练；下一堂课前看结果。</p></article>
+      <article style="--c: var(--ok)"><h3>学生</h3><p>不用猜自己学了什么：第几个星期学会了哪一项，手机上看得到。</p></article>
+    </div>
+    <p class="goal-line">今年的目标：Level 2 用真学生、真老师，把这个圈完整走一次。</p>
+    <p class="foot">资料：e-learning Level 2 故事版（30 课、24 项技能的标签）、课堂 Level 2 课程表 v1.5（48 个课题的技能标签）、课堂 E10 成品（17 页，老师和学生手机两个画面）、第 3 单元开场讲解卡。学生 Alex、班上其他学生、16 周的数字是示意。</p>
+  </div>
+</section>
+
+<script>
+(function () {
+  var WEEKS = [{"w": 1, "st": [0, 0, 0, 2, 0, 0, 2, 2, 1, 0, 0, 1, 2, 3, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0], "flags": [], "newly": ["N2"], "words": 22, "sents": 17, "app": [{"key": "m1-0", "title": "让聊天继续：回答＋细节＋反问", "unit": "聊起来，聊下去"}, {"key": "m1-1", "title": "发生了什么，我有什么感受", "unit": "聊起来，聊下去"}], "cls": [{"code": "O01", "title": "Office, Home or Hybrid?", "zh": "在家、办公室还是混合：说出你的看法并支持它"}], "learned": 1}, {"w": 2, "st": [0, 2, 0, 3, 0, 0, 2, 2, 1, 0, 0, 1, 3, 3, 2, 2, 1, 2, 0, 0, 0, 0, 0, 0], "flags": [], "newly": ["E4", "N1"], "words": 44, "sents": 33, "app": [{"key": "m1-2", "title": "以前和现在", "unit": "聊起来，聊下去"}, {"key": "m1-3", "title": "教同事怎么做", "unit": "聊起来，聊下去"}], "cls": [{"code": "N01", "title": "Worst Service Ever (and What Happened Next)", "zh": "最差的服务经历：按顺序讲发生了什么、怎么结束"}], "learned": 3}, {"w": 3, "st": [0, 3, 0, 3, 1, 1, 3, 3, 1, 0, 0, 1, 3, 4, 2, 2, 2, 3, 0, 0, 0, 0, 0, 0], "flags": [], "newly": ["E2", "O1", "O2", "N6"], "words": 63, "sents": 51, "app": [{"key": "m1-4", "title": "Boss：和老朋友叙旧", "unit": "聊起来，聊下去"}, {"key": "m2-0", "title": "说出你比较喜欢哪一个", "unit": "偏好与看法"}], "cls": [{"code": "E01", "title": "Life Hacks That Actually Work", "zh": "分享一个真的有用的小窍门／工作流程，一步一步讲到对方会做"}], "learned": 7}, {"w": 4, "st": [0, 3, 0, 3, 1, 1, 3, 4, 1, 0, 0, 1, 3, 4, 2, 2, 2, 3, 3, 3, 0, 1, 1, 0], "flags": [], "newly": ["R1", "R2"], "words": 85, "sents": 68, "app": [{"key": "m2-1", "title": "比较两三样东西", "unit": "偏好与看法"}, {"key": "m2-2", "title": "说看法，礼貌地同意或不同意", "unit": "偏好与看法"}], "cls": [{"code": "R01", "title": "The Team Makan Spot", "zh": "团队聚餐选哪里？找到大家都满意的地方"}], "learned": 9}, {"w": 5, "st": [0, 3, 0, 3, 1, 1, 4, 4, 3, 1, 1, 2, 3, 4, 2, 2, 2, 3, 3, 3, 1, 2, 2, 0], "flags": [], "newly": ["O3"], "words": 106, "sents": 86, "app": [{"key": "m2-3", "title": "OREO：哪一个比较好？", "unit": "偏好与看法"}, {"key": "m2-4", "title": "Boss 挑战：顾客问你买哪一个", "unit": "偏好与看法"}], "cls": [{"code": "O02", "title": "Side Hustle: Smart Move or Burnout Trap?", "zh": "兼职副业：聪明还是累垮自己？"}], "learned": 10}, {"w": 6, "st": [2, 3, 0, 4, 2, 1, 4, 4, 3, 1, 1, 2, 3, 4, 3, 2, 2, 3, 3, 3, 1, 3, 2, 2], "flags": [], "newly": ["N3", "R4"], "words": 127, "sents": 103, "app": [{"key": "m3-0", "title": "把问题说清楚", "unit": "讲清楚问题与办法"}, {"key": "m3-1", "title": "一起提建议、解决问题", "unit": "讲清楚问题与办法"}], "cls": [{"code": "N02", "title": "So, Where Are We?", "zh": "老板问进度：一分钟讲完做了什么、现在到哪、下一步"}], "learned": 12}, {"w": 7, "st": [3, 3, 2, 4, 2, 2, 4, 4, 3, 1, 1, 2, 3, 4, 3, 2, 2, 3, 3, 3, 1, 3, 2, 2], "flags": ["E3"], "newly": ["E1"], "words": 147, "sents": 120, "app": [{"key": "m3-2", "title": "三步说明：重点 → 原因 → 下一步", "unit": "讲清楚问题与办法"}, {"key": "m3-3", "title": "说清楚：我的意思是……", "unit": "讲清楚问题与办法"}], "cls": [{"code": "E10", "title": "Is This a Scam?", "zh": "诈骗电话、假包裹：讲清楚骗局怎么运作、怎样防"}], "learned": 13}, {"w": 8, "st": [3, 3, 2, 4, 2, 2, 4, 4, 3, 1, 1, 2, 3, 4, 3, 2, 3, 4, 4, 4, 1, 3, 3, 2], "flags": ["E3"], "newly": ["N5", "R5"], "words": 166, "sents": 138, "app": [{"key": "m3-4", "title": "Boss 挑战：帮朋友处理丢钱包", "unit": "讲清楚问题与办法"}, {"key": "m4-0", "title": "报告发生了什么", "unit": "工作：报告与进度"}], "cls": [{"code": "R02", "title": "Two Quotes, One Budget", "zh": "两份报价，一个预算：比较后推荐一家"}], "learned": 15}, {"w": 9, "st": [3, 3, 3, 4, 3, 2, 4, 4, 3, 1, 1, 2, 3, 4, 3, 2, 3, 4, 4, 4, 1, 3, 3, 3], "flags": [], "newly": ["E3", "E5", "R6"], "words": 188, "sents": 155, "app": [{"key": "m4-1", "title": "汇报进度", "unit": "工作：报告与进度"}, {"key": "m4-2", "title": "跟顾客说明延误", "unit": "工作：报告与进度"}], "cls": [{"code": "O03", "title": "Good Idea, But…", "zh": "同事提了一个点子：怎样给真实但平衡的意见"}], "learned": 18}, {"w": 10, "st": [4, 3, 3, 4, 3, 2, 4, 4, 3, 1, 1, 2, 4, 4, 3, 2, 4, 4, 4, 4, 1, 3, 3, 3], "flags": [], "newly": [], "words": 208, "sents": 173, "app": [{"key": "m4-3", "title": "总结会议、转达指示", "unit": "工作：报告与进度"}, {"key": "m4-4", "title": "Boss 挑战：说明任务为什么迟了", "unit": "工作：报告与进度"}], "cls": [{"code": "N03", "title": "How Did You End Up Here?", "zh": "你是怎么走到今天这份工作的？"}], "learned": 18}, {"w": 11, "st": [4, 3, 4, 4, 3, 2, 4, 4, 3, 1, 1, 2, 4, 4, 3, 2, 4, 4, 4, 4, 2, 3, 3, 3], "flags": ["E6"], "newly": [], "words": 228, "sents": 190, "app": [{"key": "m5-0", "title": "询问与回应别人的看法", "unit": "讨论与简短发言"}, {"key": "m5-1", "title": "好处和问题", "unit": "讨论与简短发言"}], "cls": [{"code": "E02", "title": "Plans Changed. Again!", "zh": "计划又变了：讲清楚为什么变、现在怎样、接下来怎么做"}], "learned": 18}, {"w": 12, "st": [4, 3, 4, 4, 3, 2, 4, 4, 4, 2, 2, 3, 4, 4, 3, 2, 4, 4, 4, 4, 2, 4, 3, 4], "flags": ["E6"], "newly": ["O6"], "words": 249, "sents": 206, "app": [{"key": "m5-2", "title": "会议发言：OREO + 回应一个顾虑", "unit": "讨论与简短发言"}, {"key": "m5-3", "title": "一分钟发言", "unit": "讨论与简短发言"}], "cls": [{"code": "R03", "title": "A Local's Guide", "zh": "当地人带路：按访客喜好推荐去处"}], "learned": 19}, {"w": 13, "st": [4, 3, 4, 4, 3, 2, 4, 4, 4, 2, 2, 3, 4, 4, 4, 3, 4, 4, 4, 4, 2, 4, 3, 4], "flags": ["E6"], "newly": ["N4"], "words": 269, "sents": 224, "app": [{"key": "m5-4", "title": "Boss 挑战：团队讨论", "unit": "讨论与简短发言"}, {"key": "m6-0", "title": "整件事是怎么发生的", "unit": "融会贯通"}], "cls": [{"code": "O04", "title": "Would You Trust a 5-Star Review?", "zh": "五星好评还能信吗？用自己的经历支持看法"}], "learned": 20}, {"w": 14, "st": [4, 4, 4, 4, 3, 3, 4, 4, 4, 2, 2, 3, 4, 4, 4, 3, 4, 4, 4, 4, 3, 4, 3, 4], "flags": [], "newly": ["E6", "R3"], "words": 287, "sents": 241, "app": [{"key": "m6-1", "title": "教 Ali 检查货车", "unit": "融会贯通"}, {"key": "m6-2", "title": "第二家酒店？好好衡量", "unit": "融会贯通"}], "cls": [{"code": "N04", "title": "The Day We Saved the Day", "zh": "离期限只剩一小时，全出错了：讲你们怎样解决"}], "learned": 22}, {"w": 15, "st": [4, 4, 4, 4, 4, 3, 4, 4, 4, 3, 3, 4, 4, 4, 4, 3, 4, 4, 4, 4, 3, 4, 3, 4], "flags": [], "newly": ["O4", "O5"], "words": 306, "sents": 258, "app": [{"key": "m6-3", "title": "年终检讨：把一个看法说透", "unit": "融会贯通"}, {"key": "m6-4", "title": "终极挑战：跟酒店经理回顾和展望", "unit": "融会贯通"}], "cls": [{"code": "E03", "title": "Something's Not Right", "zh": "东西坏了／系统出问题：把问题讲到对方能处理"}], "learned": 24}, {"w": 16, "st": [4, 4, 4, 4, 4, 3, 4, 4, 4, 3, 3, 4, 4, 4, 4, 3, 4, 4, 4, 4, 3, 4, 3, 4], "flags": [], "newly": [], "words": 312, "sents": 261, "app": [], "cls": [{"code": "R04", "title": "Course, App or YouTube?", "zh": "上课、App 还是 YouTube？推荐最适合的学习方式"}], "learned": 24}];
+  var IDS = ["E1","E2","E3","E4","E5","E6","O1","O2","O3","O4","O5","O6","N1","N2","N3","N4","N5","N6","R1","R2","R3","R4","R5","R6"];
+  var NAME = {
+    E1:["Describe the situation","描述情况"],E2:["Explain what or how","说明是什么、怎么做"],E3:["Explain reasons or causes","讲原因"],
+    E4:["Add relevant details","补充细节"],E5:["Explain results or impact","讲结果和影响"],E6:["Clarify when needed","需要时再讲清楚"],
+    O1:["State your opinion","说出看法"],O2:["Give reasons","给理由"],O3:["Give examples","举例子"],
+    O4:["Add supporting points","加支持的点"],O5:["Develop your main point","把重点讲开"],O6:["Conclude or restate your opinion","总结，再说一次看法"],
+    N1:["Set the scene","交代背景"],N2:["Describe what happened","讲发生了什么"],N3:["Sequence key events","按顺序讲重点"],
+    N4:["Explain change or development","讲变化和发展"],N5:["Describe the current situation","讲现在怎样"],N6:["Share next steps","讲接下来"],
+    R1:["Identify needs or criteria","找出需求和标准"],R2:["Compare options","比较选项"],R3:["Evaluate pros and cons","评估好处和坏处"],
+    R4:["Make a recommendation","给出建议"],R5:["Justify your choice","说明为什么"],R6:["Add conditions or alternatives","加条件或其他选择"]
+  };
+  var DEPT = [["说明","EXPLAIN"],["表达看法","OPINION"],["叙述","NARRATE"],["推荐","RECOMMEND"]];
+  var STATE = ["还没碰","看过","说过一次","学会了","练熟了"];
+  var reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+  function $(id) { return document.getElementById(id); }
+
+  /* a slideshow of pictures: one or two frames that change together */
+  function slideshow(o) {
+    var i = 0, timer = null, playing = !reduce;
+    var layers = o.frames.map(function (fr) {
+      var host = $(fr.host), imgs = [];
+      o.items.forEach(function (it, k) {
+        var im = document.createElement("img");
+        im.src = fr.src(it, k); im.alt = fr.alt(it, k); im.loading = k < 2 ? "eager" : "lazy"; im.decoding = "async";
+        im.className = fr.cls || ""; im.style.opacity = k === 0 ? "1" : "0";
+        host.appendChild(im); imgs.push(im);
+      });
+      return imgs;
+    });
+    var dots = o.dots ? $(o.dots) : null;
+    if (dots) o.items.forEach(function () { dots.appendChild(document.createElement("i")); });
+    function show(n) {
+      i = (n + o.items.length) % o.items.length;
+      layers.forEach(function (imgs) { imgs.forEach(function (im, k) { im.style.opacity = k === i ? "1" : "0"; }); });
+      o.caption(o.items[i], i);
+      $(o.count).textContent = (i + 1) + " / " + o.items.length;
+      if (dots) Array.prototype.forEach.call(dots.children, function (d, k) { d.className = k === i ? "on" : ""; });
+      if (o.after) o.after(o.items[i], i);
+    }
+    function tick() { show(i + 1); }
+    function setPlay(p) {
+      playing = p; clearInterval(timer);
+      if (p) timer = setInterval(tick, o.ms);
+      $(o.play).textContent = p ? "暂停" : "▶ 播放";
+    }
+    $(o.prev).onclick = function () { setPlay(false); show(i - 1); };
+    $(o.next).onclick = function () { setPlay(false); show(i + 1); };
+    $(o.play).onclick = function () { setPlay(!playing); };
+    show(0); setPlay(playing);
+  }
+
+  /* App practice: lesson m3-2, eight of its 21 steps */
+  var APP = [
+    ["这一课的目标", "先看情境和目标：我能用三步说明讲问题、计划或请求。"],
+    ["新单词", "That's because… / the reason is… / so that…：点一下听发音，看怎么用。"],
+    ["排句子", "把四句排成最清楚的顺序：重点 → 原因 → 下一步。"],
+    ["用英文说出来", "看情境，按麦克风说：冷气第二次漏水，告诉主管。"],
+    ["对话", "Kumar 问明天几点出发，点词组句，说出重点和原因。"],
+    ["和 Kumar 演一次", "他说一句，学生回一句，演完整段播放给自己听。"],
+    ["自己说说看", "Mr. Tan 问复印机又坏了怎么办：没有选项，用自己的话说。"],
+    ["一次说完整", "饮水机漏水，一口气用三步说明告诉 Siti，至少 25 个英文单词。"]
+  ];
+  slideshow({
+    items: APP, ms: 3600, prev: "app-prev", next: "app-next", play: "app-play", count: "app-count", dots: "app-dots",
+    frames: [{ host: "app-phone", cls: "fade", src: function (it, k) { return "m/a" + (k + 1) + ".jpg"; }, alt: function (it) { return "e-learning 画面：" + it[0]; } }],
+    caption: function (it) { var c = $("app-cap"); c.innerHTML = ""; var b = document.createElement("b"); b.textContent = it[0]; var s = document.createElement("span"); s.textContent = it[1]; c.appendChild(b); c.appendChild(s); }
+  });
+
+  /* Class E10: 17 screens, the projector and the student's phone together */
+  var PH = ["连起来","学","结构","练","沟通","再试","用出去","回顾"];
+  var CLS = [
+    [0,"开场","三则讯息，很多人都收过。今天学：在来不及之前，怎样提醒别人。"],
+    [0,"是骗局还是安全？","三个手机讯息，大家先猜，再看理由。"],
+    [0,"今天的沟通目标","把风险讲清楚，让别人明白情况、知道下一步。"],
+    [0,"奶奶的语音讯息","奶奶慌张地传来语音。学生先用自己的英文回她：这是「上课前」的答案。"],
+    [1,"单词墙","猜一猜、翻过来、说一次：pretend to be、fall for、suspicious……"],
+    [1,"复习 8 个单词","两队比赛：这个情况用哪一个词？"],
+    [1,"一句话的提醒","Mei Ling 只说了一句「大家小心」，为什么没人听进去？"],
+    [1,"Mei Ling 再试一次","这次她讲了发生什么、怎么骗、该怎么做。大家听，回答四个问题。"],
+    [2,"公式 P.P.F","过去（发生了什么）→ 现在（骗局怎么运作）→ 将来（该怎么做）。"],
+    [2,"每一部分用对的时态","过去式、现在式、将来要做的事，各自练一次。"],
+    [3,"一起写一个提醒","全班照 P.P.F，一部分一部分把笔记变成提醒。"],
+    [4,"Scam Alert","分组：一人提醒，其他人判断是骗局还是安全，说 because。"],
+    [4,"Kumar 不相信","「才 RM1.80 而已」：用 because 回答他。"],
+    [5,"再回答奶奶一次","同一个问题，用 P.P.F 再答一次：这是「下课前」的答案。"],
+    [5,"前后对比","「小心」变成一个让人知道该怎么做的提醒。"],
+    [6,"为什么要有条理地提醒","对家人、同事、主管，同样的三部分都有用。"],
+    [7,"这星期的任务","用 P.P.F 提醒一个身边的人。"]
+  ];
+  var phase = $("phase");
+  PH.forEach(function (p) { var s = document.createElement("span"); s.textContent = p; phase.appendChild(s); });
+  slideshow({
+    items: CLS, ms: 4200, prev: "cls-prev", next: "cls-next", play: "cls-play", count: "cls-count",
+    frames: [
+      { host: "cls-screen", src: function (it, k) { return "m/c" + String(k + 1).padStart(2, "0") + ".jpg"; }, alt: function (it) { return "课堂投影：" + it[1]; } },
+      { host: "cls-phone", cls: "fade", src: function (it, k) { return "m/p" + String(k + 1).padStart(2, "0") + ".jpg"; }, alt: function (it) { return "学生手机：" + it[1]; } }
+    ],
+    caption: function (it) { var c = $("cls-cap"); c.innerHTML = ""; var b = document.createElement("b"); b.textContent = PH[it[0]]; var s = document.createElement("span"); s.textContent = it[1] + "：" + it[2]; c.appendChild(b); c.appendChild(s); },
+    after: function (it) { Array.prototype.forEach.call(phase.children, function (e, k) { e.className = k === it[0] ? "on" : ""; }); }
+  });
+
+  /* Sixteen weeks: the phone home, cell by cell */
+  var gmap = $("g-map"), cells = {}, selected = null;
+  DEPT.forEach(function (d, di) {
+    var row = document.createElement("div"); row.className = "grow-row";
+    var dn = document.createElement("div"); dn.className = "dn"; dn.textContent = d[0];
+    var sm = document.createElement("small"); sm.textContent = d[1]; dn.appendChild(sm);
+    var wrap = document.createElement("div"); wrap.className = "gcells";
+    for (var si = 0; si < 6; si++) {
+      var id = IDS[di * 6 + si];
+      var b = document.createElement("button"); b.type = "button"; b.className = "gcell"; b.dataset.k = id; b.setAttribute("aria-pressed", "false");
+      b.addEventListener("click", (function (k) { return function () { selected = k; render(week, false); }; })(id));
+      wrap.appendChild(b); cells[id] = b;
+    }
+    row.appendChild(dn); row.appendChild(wrap); gmap.appendChild(row);
+  });
+
+  var WORDS = WEEKS.map(function (x) { return x.words; }), SENTS = WEEKS.map(function (x) { return x.sents; });
+  function spark(el, data, w, color) {
+    var max = data[data.length - 1], n = data.length, pts = [];
+    for (var i = 0; i < w; i++) pts.push((4 + 112 * i / (n - 1)).toFixed(1) + "," + (30 - 26 * data[i] / max).toFixed(1));
+    var last = pts[pts.length - 1].split(",");
+    el.innerHTML = '<line x1="4" y1="30" x2="116" y2="30" stroke="#E4E8F1" stroke-width="1" fill="none"/>' +
+      (pts.length > 1 ? '<polyline points="' + pts.join(" ") + '" fill="none" stroke="' + color + '" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke"/>' : "") +
+      '<circle cx="' + last[0] + '" cy="' + last[1] + '" r="3" fill="' + color + '"/>';
+  }
+  function countTo(el, to) {
+    var from = +el.dataset.v || 0; el.dataset.v = to;
+    if (reduce || from === to) { el.textContent = to; return; }
+    var t0 = null;
+    function step(t) { if (!t0) t0 = t; var p = Math.min(1, (t - t0) / 700); el.textContent = Math.round(from + (to - from) * p); if (p < 1) requestAnimationFrame(step); }
+    requestAnimationFrame(step);
+  }
+  function li(cls, label, text) {
+    var e = document.createElement("li"), w = document.createElement("span"), t = document.createElement("span");
+    w.className = "who " + cls; w.textContent = label; t.textContent = text; e.appendChild(w); e.appendChild(t); return e;
+  }
+
+  var week = 1, last = null;
+  function render(w, animate) {
+    week = w;
+    var wk = WEEKS[w - 1], said = 0;
+    IDS.forEach(function (id, k) {
+      var c = cells[id], s = wk.st[k], was = last ? last.st[k] : 0;
+      if (s === 2) said++;
+      c.dataset.s = s; c.dataset.f = wk.flags.indexOf(id) >= 0 ? "1" : "0";
+      c.setAttribute("aria-label", NAME[id][1] + " · " + (c.dataset.f === "1" ? "老师指了要练" : STATE[s]));
+      c.setAttribute("aria-pressed", id === selected ? "true" : "false");
+      if (animate && s >= 3 && was < 3) { c.classList.remove("pop"); void c.offsetWidth; c.classList.add("pop"); }
+    });
+    last = wk;
+    $("g-week").textContent = "第 " + w + " 周";
+    $("g-range").value = w;
+    $("g-count").textContent = "会了 " + wk.learned + " / 24";
+    countTo($("g-words"), wk.words); countTo($("g-sents"), wk.sents);
+    spark($("g-sp-words"), WORDS, w, "#7B5CD6"); spark($("g-sp-sents"), SENTS, w, "#2A8BD7");
+
+    var acts = $("g-acts"); acts.innerHTML = "";
+    wk.cls.forEach(function (c) { acts.appendChild(li("cls", "课堂", c.code + " " + c.title)); });
+    if (wk.app.length) acts.appendChild(li("app", "App", wk.app.map(function (a) { return a.title; }).join("；")));
+    else acts.appendChild(li("app", "App", "30 课做完了，这星期复习"));
+    var nw = $("g-newly"); nw.innerHTML = "";
+    var lab = document.createElement("b"); lab.textContent = "这星期学会："; nw.appendChild(lab);
+    if (wk.newly.length) wk.newly.forEach(function (id) { var s = document.createElement("span"); s.textContent = NAME[id][1]; s.title = NAME[id][0]; nw.appendChild(s); });
+    else nw.appendChild(document.createTextNode("没有新的，在练说过一次的。"));
+
+    var fl = wk.flags[0], card = $("g-flag"), none = $("g-flag-none"), name = $("g-flag-name");
+    if (fl) {
+      card.hidden = false; none.hidden = true; name.textContent = NAME[fl][0];
+      var sm = document.createElement("small"); sm.textContent = DEPT[IDS.indexOf(fl) / 6 | 0][0] + " · " + NAME[fl][1]; name.appendChild(sm);
+    } else { card.hidden = true; none.hidden = false; }
+    $("g-teacher").textContent = "Alex · 学会了 " + wk.learned + " 项 · 说过一次 " + said + " 项" + (fl ? " · 已指派「" + NAME[fl][1] + "」，还在练。" : " · 没有指派中的练习。");
+
+    var pk = $("g-picked"), key = selected || fl; pk.innerHTML = "";
+    if (key) {
+      var b = document.createElement("b"), sp = document.createElement("span");
+      b.textContent = NAME[key][0];
+      sp.textContent = DEPT[IDS.indexOf(key) / 6 | 0][0] + " · " + NAME[key][1] + " · " + (wk.flags.indexOf(key) >= 0 ? "老师指了要练" : STATE[wk.st[IDS.indexOf(key)]]);
+      pk.appendChild(b); pk.appendChild(sp);
+    } else { var h = document.createElement("span"); h.textContent = "点一格，看那是什么技能。"; pk.appendChild(h); }
+    $("g-prev").disabled = w <= 1; $("g-next").disabled = w >= 16;
+  }
+
+  var timer = null, playing = false;
+  function setPlay(p) {
+    playing = p; clearInterval(timer);
+    $("g-play").textContent = p ? "暂停" : "▶ 播放";
+    if (p) {
+      if (week >= 16) render(1, false);
+      timer = setInterval(function () { if (week >= 16) { setPlay(false); return; } render(week + 1, true); }, 1600);
+    }
+  }
+  $("g-play").onclick = function () { setPlay(!playing); };
+  $("g-prev").onclick = function () { setPlay(false); render(Math.max(1, week - 1), false); };
+  $("g-next").onclick = function () { setPlay(false); render(Math.min(16, week + 1), true); };
+  $("g-range").addEventListener("input", function (e) { setPlay(false); render(+e.target.value, true); });
+  render(1, false);
+
+  /* start the sixteen weeks once, the first time the scene is on screen */
+  var started = false;
+  if ("IntersectionObserver" in window && !reduce) {
+    new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting && !started) { started = true; setTimeout(function () { setPlay(true); }, 700); } }); }, { threshold: 0.4 }).observe($("s-grow"));
+  }
+
+  /* the bar's links follow the scene on screen; arrow keys move between scenes */
+  var scenes = Array.prototype.slice.call(document.querySelectorAll(".scene"));
+  var links = Array.prototype.slice.call(document.querySelectorAll("#nav a"));
+  var ticking = false;
+  function markNav() {
+    ticking = false;
+    var y = window.scrollY + window.innerHeight * 0.35, cur = scenes[0];
+    scenes.forEach(function (sc) { if (sc.offsetTop <= y) cur = sc; });
+    links.forEach(function (a) { a.className = a.getAttribute("href") === "#" + cur.id ? "on" : ""; });
+  }
+  window.addEventListener("scroll", function () { if (!ticking) { ticking = true; requestAnimationFrame(markNav); } }, { passive: true });
+  markNav();
+  document.addEventListener("keydown", function (e) {
+    if (e.target && /INPUT|TEXTAREA|SELECT|VIDEO/.test(e.target.tagName)) return;
+    if (e.key !== "PageDown" && e.key !== "PageUp") return;
+    var y = window.scrollY + 80, cur = 0;
+    scenes.forEach(function (s, k) { if (s.offsetTop <= y) cur = k; });
+    var to = scenes[Math.max(0, Math.min(scenes.length - 1, cur + (e.key === "PageDown" ? 1 : -1)))];
+    e.preventDefault(); to.scrollIntoView({ behavior: reduce ? "auto" : "smooth" });
+  });
+})();
+</script>
+
+</body></html>
